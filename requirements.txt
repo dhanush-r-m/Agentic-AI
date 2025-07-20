@@ -11,3 +11,7 @@ wikipedia
 langchain-text-splitters
 langchain-openai
 chromadb
+sentence-transformers
+langchain_huggingface
+tf-keras
+faiss-cpu
