@@ -17,3 +17,4 @@ tf-keras
 faiss-cpu
 langchain_chroma
 beautifulsoup4
+streamlit
