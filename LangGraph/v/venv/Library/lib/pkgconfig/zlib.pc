@@ -1,0 +1,13 @@
+prefix=C:/Fury coder/Agentic AI/AGENT/LangGraph/venv/Library
+exec_prefix=C:/Fury coder/Agentic AI/AGENT/LangGraph/venv/Library
+libdir=C:/Fury coder/Agentic AI/AGENT/LangGraph/venv/Library/lib
+sharedlibdir=C:/Fury coder/Agentic AI/AGENT/LangGraph/venv/Library/lib
+includedir=C:/Fury coder/Agentic AI/AGENT/LangGraph/venv/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
