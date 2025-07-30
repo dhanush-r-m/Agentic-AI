@@ -67,3 +67,4 @@ def make_alternative_graph():
 
 agent=make_alternative_graph()
 
+### use the "langgraph dev" command to run this file in the terminal and make sure you connected it to the LangSmith project
