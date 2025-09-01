@@ -1,4 +1,4 @@
-
+## This is my first MCP server application
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("Demo")
