@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-card fade-in">
+            <div class="logo" style="justify-content: center; margin-bottom: 30px;">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>School Portal</h1>
+            </div>
+            <h2>Select Your Role</h2>
+            <div class="role-buttons">
+                <div class="role-btn" data-role="student">
+                    <i class="fas fa-user-graduate"></i>
+                    <div>Student</div>
+                </div>
+                <div class="role-btn" data-role="teacher">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <div>Teacher</div>
+                </div>
+                <div class="role-btn" data-role="parent">
+                    <i class="fas fa-users"></i>
+                    <div>Parent</div>
+                </div>
+                <div class="role-btn" data-role="admin">
+                    <i class="fas fa-user-cog"></i>
+                    <div>Admin</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="login()" style="width: 100%;">
+                <i class="fas fa-sign-in-alt"></i> Enter Dashboard
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div id="header" class="header" style="display: none;">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>School Management System</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">A</div>
+                <div>
+                    <div id="userName">Admin User</div>
+                    <small id="userRole">Administrator</small>
+                </div>
+                <button class="btn btn-primary" onclick="logout()" style="margin-left: 20px;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div class="container" id="dashboardContainer" style="display: none;">
+        
+        <!-- Student Dashboard -->
+        <div id="studentDashboard" class="dashboard">
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <h3><i class="fas fa-user-graduate"></i> Student Menu</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-section="student-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="#" data-section="student-grades"><i class="fas fa-chart-line"></i> Grades</a></li>
+                        <li><a href="#" data-section="student-timetable"><i class="fas fa-calendar"></i> Timetable</a></li>
+                        <li><a href="#" data-section="student-attendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
+                        <li><a href="#" data-section="student-assignments"><i class="fas fa-tasks"></i> Assignments</a></li>
+                    </ul>
+                </div>
+                
+                <div class="main-content">
+                    <!-- Student Profile Section -->
+                    <div id="student-profile" class="content-section active">
+                        <div class="card-header">
+                            <h2 class="card-title"><i class="fas fa-user"></i> My Profile</h2>
+                            <button class="btn btn-primary" onclick="openModal('editStudentModal')">
+                                <i class="fas fa-edit"></i> Edit Profile
+                            </button>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-id-badge"></i>
+                                <h3 id="studentRollNumber">ST001</h3>
+                                <p>Roll Number</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-calendar-alt"></i>
+                                <h3 id="studentClass">Grade 10</h3>
+                                <p>Current Class</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-percentage"></i>
+                                <h3 id="studentAverage">85.5%</h3>
+                                <p>Overall Average</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>Personal Information</h3>
+                            <div class="profile-info-grid">
+                                <div>
+                                    <strong>Name:</strong> <span id="studentName">John Smith</span><br>
+                                    <strong>Date of Birth:</strong> <span id="studentDob">15/05/2008</span><br>
+                                    <strong>Email:</strong> <span id="studentEmail">john.smith@school.edu</span>
+                                </div>
+                                <div>
+                                    <strong>Father's Name:</strong> <span id="studentFather">Robert Smith</span><br>
+                                    <strong>Mother's Name:</strong> <span id="studentMother">Mary Smith</span><br>
+                                    <strong>Phone:</strong> <span id="studentPhone">+1234567890</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Grades Section -->
+                    <div id="student-grades" class="content-section">
+                        <div class="card-header">
+                            <h2 class="card-title"><i class="fas fa-chart-line"></i> My Grades</h2>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="table-container">
+                                <table id="gradesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Test 1</th>
+                                            <th>Test 2</th>
+                                            <th>Assignment</th>
+                                            <th>Final Exam</th>
+                                            <th>Overall</th>
+                                            <th>Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Timetable Section -->
+                    <div id="student-timetable" class="content-section">
+                        <div class="card-header">
+                            <h2 class="card-title"><i class="fas fa-calendar"></i> Class Timetable</h2>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="table-container">
+                                <table id="timetableTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Monday</th>
+                                            <th>Tuesday</th>
+                                            <th>Wednesday</th>
+                                            <th>Thursday</th>
+                                            <th>Friday</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Attendance Section -->
+                    <div id="student-attendance" class="content-section">
+                        <div class="card-header">
+                            <h2 class="card-title"><i class="fas fa-check-circle"></i> My Attendance</h2>
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card" style="background: linear-gradient(135deg, var(--success-color), #059669);">
+                                <i class="fas fa-check"></i>
+                                <h3 id="attendancePercent">92%</h3>
+                                <p>Overall Attendance</p>
+                            </div>
+                            <div class="stat-card" style="background: linear-gradient(135deg, var(--warning-color), #d97706);">
+                                <i class="fas fa-calendar-times"></i>
+                                <h3 id="daysAbsent">8</h3>
+                                <p>Days Absent</p>
+                            </div>
+                            <div class="stat-card" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
+                                <i class="fas fa-calendar-check"></i>
+                                <h3 id="daysPresent">92</h3>
+                                <p>Days Present</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>Recent Attendance</h3>
+                            <div class="table-container" style="margin-top: 15px;">
+                                <table id="attendanceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>First Period</th>
+                                            <th>Second Period</th>
+                                            <th>Third Period</th>
+                                            <th>Fourth Period</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Student Assignments Section -->
+                    <div id="student-assignments" class="content-section">
+                        <div class="card-header">
+                            <h2 class="card-title"><i class="fas fa-tasks"></i> My Assignments</h2>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="table-container">
+                                <table id="assignmentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Assignment</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                            <th>Grade</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Filled by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher Dashboard -->
+        <div id="teacherDashboard" class="dashboard">
+            <!-- Similar structure to student dashboard but for teachers -->
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Teacher Menu</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-section="teacher-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="#" data-section="teacher-classes"><i class="fas fa-users"></i> My Classes</a></li>
+                        <li><a href="#" data-section="teacher-timetable"><i class="fas fa-calendar"></i> Timetable</a></li>
+                        <li><a href="#" data-section="teacher-attendance"><i class="fas fa-check-circle"></i> Take Attendance</a></li>
+                        <li><a href="#" data-section="teacher-grading"><i class="fas fa-graduation-cap"></i> Grading</a></li>
+                    </ul>
+                </div>
+                
+                <div class="main-content">
+                    <!-- Teacher sections would go here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Parent Dashboard -->
+        <div id="parentDashboard" class="dashboard">
+            <!-- Similar structure but for parents -->
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <h3><i class="fas fa-users"></i> Parent Menu</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-section="parent-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="#" data-section="parent-wards"><i class="fas fa-child"></i> My Wards</a></li>
+                        <li><a href="#" data-section="parent-grades"><i class="fas fa-chart-line"></i> Grades</a></li>
+                        <li><a href="#" data-section="parent-attendance"><i class="fas fa-check-circle"></i> Attendance</a></li>
+                        <li><a href="#" data-section="parent-payments"><i class="fas fa-money-bill-wave"></i> Fee Payments</a></li>
+                    </ul>
+                </div>
+                
+                <div class="main-content">
+                    <!-- Parent sections would go here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="dashboard">
+            <!-- Similar structure but for admin -->
+            <div class="dashboard-grid">
+                <div class="sidebar">
+                    <h3><i class="fas fa-user-cog"></i> Admin Menu</h3>
+                    <ul class="sidebar-menu">
+                        <li><a href="#" class="active" data-section="admin-dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#" data-section="admin-students"><i class="fas fa-user-graduate"></i> Students</a></li>
+                        <li><a href="#" data-section="admin-teachers"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+                        <li><a href="#" data-section="admin-parents"><i class="fas fa-users"></i> Parents</a></li>
+                        <li><a href="#" data-section="admin-timetable"><i class="fas fa-calendar"></i> Timetable</a></li>
+                        <li><a href="#" data-section="admin-reports"><i class="fas fa-chart-pie"></i> Reports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="main-content">
+                    <!-- Admin sections would go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div id="editStudentModal" class="modal">
+        <div class="modal-content slide-up">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="close-btn" onclick="closeModal('editStudentModal')">&times;</button>
+            </div>
+            <form id="editStudentForm">
+                <div class="form-group">
+                    <label for="editName">Full Name</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editAddress">Address</label>
+                    <textarea id="editAddress" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
