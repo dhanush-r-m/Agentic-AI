@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>MCP Server Dashboard</title></head>
+<body>
+    <h1>MCP Usage Stats</h1>
+    <table border="1">
+        <tr><th>Provider</th><th>Requests</th></tr>
+        {% for provider, count in stats %}
+        <tr><td>{{ provider }}</td><td>{{ count }}</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
