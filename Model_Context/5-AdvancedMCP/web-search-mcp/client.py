@@ -8,6 +8,7 @@ from mcp.client.stdio import stdio_client
 from mcp.types import TextContent, TextResourceContents
 from dotenv import load_dotenv
 
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -92,7 +93,8 @@ async def run_interactive_demo(session: ClientSession) -> None:
                 await call_tool(session, "general_search", {"query": query})
             elif choice == "2":
                 await call_tool(session, "news_search", {"query": query})
-            elif choice == "3":                await call_tool(session, "product_search", {"query": query})
+            elif choice == "3":    
+                await call_tool(session, "product_search", {"query": query})
             elif choice == "4":
                 await call_tool(session, "qna", {"question": query})
             else:
@@ -129,7 +131,7 @@ async def run_all_tools_demo(session: ClientSession) -> None:
         await call_tool(session, "product_search", {"query": "best AI gadgets 2025", "num_results": 3})
         
         # Test the qna tool
-        await call_tool(session, "qna", {"question": "what is artificial intelligence"})
+        await call_tool(session, "qna", {"question": "what is Generative and AI Agents?"})
         
     except Exception as e:
         logger.error(f"Error running tools demo: {e}")
