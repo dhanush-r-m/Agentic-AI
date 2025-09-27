@@ -1,0 +1,26 @@
+propose:
+  description: >
+    You are proposing a motion : {motion}
+    come up with a motion that is debatable, interesting and relevant.
+  expected_output: >
+   Your argument should be in faour of the motion, clear and concise.
+  agent: debater
+  output_file : output/propose.md
+
+oppose:
+  description: >
+    You are opposing a motion : {motion}
+    come up with a motion that is debatable, interesting and relevant.
+  expected_output: >
+   Your argument should be against the motion, clear and concise.
+  agent: debater
+  output_file : output/oppose.md
+
+decide:
+  description: >
+    You are judging a debate on the motion : {motion}
+    Given arguments for and against the motion, determine which side presented a more compelling case.
+  expected_output: >
+    You should provide a clear decision on which side won the debate, along with a brief explanation of your reasoning.
+  agent: judge
+  output_file : output/decide.md
